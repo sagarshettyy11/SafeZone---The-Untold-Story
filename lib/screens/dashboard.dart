@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:screen_testing/components/bottom_navigation.dart';
 
 class SafetyDashboard extends StatefulWidget {
   const SafetyDashboard({super.key});
@@ -7,7 +8,7 @@ class SafetyDashboard extends StatefulWidget {
 }
 
 class _SafetyDashboardState extends State<SafetyDashboard> {
-  int _selectedIndex = 0;
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +33,12 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
           ),
         ),
       ),
-      bottomNavigationBar: _buildBottomNavBar(),
+      bottomNavigationBar: AppBottomNav(
+        selectedIndex: selectedIndex,
+        onTap: (i) {
+          setState(() => selectedIndex = i);
+        },
+      ),
     );
   }
 
@@ -45,27 +51,13 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
           children: [
             Text(
               'Hello',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[600],
-                fontWeight: FontWeight.w400,
-              ),
+              style: TextStyle(fontSize: 16, color: Colors.grey[600], fontWeight: FontWeight.w400),
             ),
             const Text(
               'Kevin Merico!',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1A1A2E),
-              ),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
             ),
-            Text(
-              'Keep manage your sales with care.',
-              style: TextStyle(
-                fontSize: 13,
-                color: Colors.grey[500],
-              ),
-            ),
+            Text('Keep manage your sales with care.', style: TextStyle(fontSize: 13, color: Colors.grey[500])),
           ],
         ),
         Row(
@@ -73,19 +65,13 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
             Container(
               width: 44,
               height: 44,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Icon(Icons.grid_view_rounded,
-                  color: Color(0xFF1A1A2E), size: 22),
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
+              child: const Icon(Icons.grid_view_rounded, color: Color(0xFF1A1A2E), size: 22),
             ),
             const SizedBox(width: 10),
             const CircleAvatar(
               radius: 22,
-              backgroundImage: NetworkImage(
-                'https://randomuser.me/api/portraits/men/32.jpg',
-              ),
+              backgroundImage: NetworkImage('https://randomuser.me/api/portraits/men/32.jpg'),
             ),
           ],
         ),
@@ -96,10 +82,7 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
   Widget _buildSearchBar() {
     return Container(
       height: 52,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-      ),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
       child: TextField(
         decoration: InputDecoration(
           hintText: 'Search anything in Sirehoma...',
@@ -109,8 +92,7 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
             padding: const EdgeInsets.only(right: 16),
             child: Icon(Icons.search, color: Colors.grey[500]),
           ),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
           border: InputBorder.none,
         ),
       ),
@@ -120,19 +102,13 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
   Widget _buildEmergencyBanner() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFEEAEA),
-        borderRadius: BorderRadius.circular(20),
-      ),
+      decoration: BoxDecoration(color: const Color(0xFFFEEAEA), borderRadius: BorderRadius.circular(20)),
       child: Row(
         children: [
           Container(
             width: 50,
             height: 50,
-            decoration: const BoxDecoration(
-              color: Color(0xFFD32F2F),
-              shape: BoxShape.circle,
-            ),
+            decoration: const BoxDecoration(color: Color(0xFFD32F2F), shape: BoxShape.circle),
             child: const Icon(Icons.add, color: Colors.white, size: 28),
           ),
           const SizedBox(width: 14),
@@ -142,19 +118,9 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
               children: [
                 const Text(
                   'Emergency Help',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFD32F2F),
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFD32F2F)),
                 ),
-                Text(
-                  'Tap to alert nearby response teams',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.grey[600],
-                  ),
-                ),
+                Text('Tap to alert nearby response teams', style: TextStyle(fontSize: 13, color: Colors.grey[600])),
               ],
             ),
           ),
@@ -171,21 +137,9 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
         title: 'Report\nComplaint',
         subtitle: 'Submit immediate safety concerns.',
       ),
-      _ActionItem(
-        icon: Icons.map_outlined,
-        title: 'Safety Map',
-        subtitle: 'View real-time zone alerts.',
-      ),
-      _ActionItem(
-        icon: Icons.bar_chart_outlined,
-        title: 'My Reports',
-        subtitle: 'Track your submitted tickets.',
-      ),
-      _ActionItem(
-        icon: Icons.lightbulb_outline,
-        title: 'Safety Tips',
-        subtitle: 'Professional protocols & advice.',
-      ),
+      _ActionItem(icon: Icons.map_outlined, title: 'Safety Map', subtitle: 'View real-time zone alerts.'),
+      _ActionItem(icon: Icons.bar_chart_outlined, title: 'My Reports', subtitle: 'Track your submitted tickets.'),
+      _ActionItem(icon: Icons.lightbulb_outline, title: 'Safety Tips', subtitle: 'Professional protocols & advice.'),
     ];
 
     return GridView.count(
@@ -199,22 +153,15 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
           .map(
             (item) => Container(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: 44,
                     height: 44,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF0F1F5),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child:
-                        Icon(item.icon, color: const Color(0xFF1A1A2E), size: 22),
+                    decoration: BoxDecoration(color: const Color(0xFFF0F1F5), borderRadius: BorderRadius.circular(12)),
+                    child: Icon(item.icon, color: const Color(0xFF1A1A2E), size: 22),
                   ),
                   const SizedBox(height: 14),
                   Text(
@@ -227,14 +174,7 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    item.subtitle,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[500],
-                      height: 1.4,
-                    ),
-                  ),
+                  Text(item.subtitle, style: TextStyle(fontSize: 12, color: Colors.grey[500], height: 1.4)),
                 ],
               ),
             ),
@@ -246,10 +186,7 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
   Widget _buildLocalSafetyMetrics() {
     return Container(
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -258,11 +195,7 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
             children: [
               const Text(
                 'Local Safety Metrics',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A1A2E),
-                ),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
               ),
               Icon(Icons.more_vert, color: Colors.grey[400]),
             ],
@@ -270,12 +203,7 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
           const SizedBox(height: 20),
           Text(
             'SHELTER REACHABILITY',
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: Colors.grey[500],
-              letterSpacing: 1.0,
-            ),
+            style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: Colors.grey[500], letterSpacing: 1.0),
           ),
           const SizedBox(height: 6),
           Row(
@@ -283,21 +211,13 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
             children: [
               const Text(
                 '94%',
-                style: TextStyle(
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A1A2E),
-                ),
+                style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
               ),
               Row(
                 children: [
-                  const Icon(Icons.trending_up,
-                      color: Color(0xFF8BC34A), size: 18),
+                  const Icon(Icons.trending_up, color: Color(0xFF8BC34A), size: 18),
                   const SizedBox(width: 4),
-                  Text(
-                    '+2% today',
-                    style: TextStyle(fontSize: 13, color: Colors.grey[600]),
-                  ),
+                  Text('+2% today', style: TextStyle(fontSize: 13, color: Colors.grey[600])),
                 ],
               ),
             ],
@@ -309,8 +229,7 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
               value: 0.94,
               minHeight: 8,
               backgroundColor: Color(0xFFE0E0E0),
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(Color(0xFFB5E61D)),
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFB5E61D)),
             ),
           ),
           const SizedBox(height: 20),
@@ -337,18 +256,11 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
                         children: [
                           TextSpan(
                             text: '3.2',
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF1A1A2E),
-                            ),
+                            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
                           ),
                           TextSpan(
                             text: ' min',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xFF1A1A2E),
-                            ),
+                            style: TextStyle(fontSize: 14, color: Color(0xFF1A1A2E)),
                           ),
                         ],
                       ),
@@ -374,20 +286,13 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
                       children: [
                         const Text(
                           'High',
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF1A1A2E),
-                          ),
+                          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
                         ),
                         const SizedBox(width: 6),
                         Container(
                           width: 10,
                           height: 10,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF8BC34A),
-                            shape: BoxShape.circle,
-                          ),
+                          decoration: const BoxDecoration(color: Color(0xFF8BC34A), shape: BoxShape.circle),
                         ),
                       ],
                     ),
@@ -400,52 +305,6 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
       ),
     );
   }
-
-  Widget _buildBottomNavBar() {
-    final items = [
-      Icons.home_rounded,
-      Icons.map_outlined,
-      Icons.warning_amber_outlined,
-      Icons.bar_chart_outlined,
-      Icons.person_outline,
-    ];
-
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1A2420),
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(items.length, (index) {
-          final isSelected = index == _selectedIndex;
-          return GestureDetector(
-            onTap: () => setState(() => _selectedIndex = index),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              width: isSelected ? 52 : 44,
-              height: isSelected ? 52 : 44,
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? const Color(0xFFB5E61D)
-                    : Colors.transparent,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                items[index],
-                color: isSelected
-                    ? const Color(0xFF1A2420)
-                    : Colors.white70,
-                size: 22,
-              ),
-            ),
-          );
-        }),
-      ),
-    );
-  }
 }
 
 class _ActionItem {
@@ -453,9 +312,5 @@ class _ActionItem {
   final String title;
   final String subtitle;
 
-  _ActionItem({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-  });
+  _ActionItem({required this.icon, required this.title, required this.subtitle});
 }
