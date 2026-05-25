@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:screen_testing/components/bottom_navigation.dart';
 
 class ReportComplaintScreen extends StatefulWidget {
   const ReportComplaintScreen({super.key});
@@ -10,7 +11,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
   int _selectedIssue = -1;
   bool _useCurrentLocation = true;
   double _urgencyLevel = 0.5;
-  int _selectedNavIndex = 3;
+  int selectedIndex = 3;
 
   final List<_IssueType> _issues = [
     _IssueType('Crime', Icons.warning_amber_outlined, const Color(0xFFFFF0F0), const Color(0xFFE53935)),
@@ -42,11 +43,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                   children: [
                     const Text(
                       'Report a Complaint',
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1A2420),
-                      ),
+                      style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Color(0xFF1A2420)),
                     ),
                     const SizedBox(height: 6),
                     Text(
@@ -74,9 +71,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16),
-                              border: selected
-                                  ? Border.all(color: const Color(0xFF1A2420), width: 2)
-                                  : null,
+                              border: selected ? Border.all(color: const Color(0xFF1A2420), width: 2) : null,
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -118,17 +113,17 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                             child: Container(
                               padding: const EdgeInsets.symmetric(vertical: 14),
                               decoration: BoxDecoration(
-                                color: _useCurrentLocation
-                                    ? const Color(0xFF1A2420)
-                                    : Colors.white,
+                                color: _useCurrentLocation ? const Color(0xFF1A2420) : Colors.white,
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.location_on_outlined,
-                                      color: _useCurrentLocation ? Colors.white : Colors.black,
-                                      size: 18),
+                                  Icon(
+                                    Icons.location_on_outlined,
+                                    color: _useCurrentLocation ? Colors.white : Colors.black,
+                                    size: 18,
+                                  ),
                                   const SizedBox(width: 6),
                                   Text(
                                     'Current Location',
@@ -150,20 +145,18 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                             child: Container(
                               padding: const EdgeInsets.symmetric(vertical: 14),
                               decoration: BoxDecoration(
-                                color: !_useCurrentLocation
-                                    ? const Color(0xFF1A2420)
-                                    : Colors.white,
+                                color: !_useCurrentLocation ? const Color(0xFF1A2420) : Colors.white,
                                 borderRadius: BorderRadius.circular(30),
-                                border: _useCurrentLocation
-                                    ? Border.all(color: Colors.black26)
-                                    : null,
+                                border: _useCurrentLocation ? Border.all(color: Colors.black26) : null,
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.map_outlined,
-                                      color: !_useCurrentLocation ? Colors.white : Colors.black,
-                                      size: 18),
+                                  Icon(
+                                    Icons.map_outlined,
+                                    color: !_useCurrentLocation ? Colors.white : Colors.black,
+                                    size: 18,
+                                  ),
                                   const SizedBox(width: 6),
                                   Text(
                                     'Pick Location',
@@ -186,10 +179,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                     const _SectionLabel(text: 'DESCRIPTION'),
                     const SizedBox(height: 12),
                     Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
                       child: TextField(
                         maxLines: 5,
                         decoration: InputDecoration(
@@ -215,11 +205,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                           ),
                           child: const Text(
                             'ADD',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF1A2420),
-                            ),
+                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF1A2420)),
                           ),
                         ),
                       ],
@@ -227,10 +213,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                     const SizedBox(height: 12),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
                       child: Text(
                         'Proof Link (Google Drive, Cloud, etc)',
                         style: TextStyle(color: Colors.grey[400], fontSize: 14),
@@ -251,11 +234,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                           ),
                           child: Text(
                             _urgencyLabel(),
-                            style: const TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFB5E61D),
-                            ),
+                            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFFB5E61D)),
                           ),
                         ),
                       ],
@@ -271,10 +250,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                         overlayShape: const RoundSliderOverlayShape(overlayRadius: 22),
                         overlayColor: Color(0x22B5E61D),
                       ),
-                      child: Slider(
-                        value: _urgencyLevel,
-                        onChanged: (v) => setState(() => _urgencyLevel = v),
-                      ),
+                      child: Slider(value: _urgencyLevel, onChanged: (v) => setState(() => _urgencyLevel = v)),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -297,9 +273,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                           backgroundColor: const Color(0xFFB5E61D),
                           foregroundColor: const Color(0xFF1A2420),
                           padding: const EdgeInsets.symmetric(vertical: 18),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                           elevation: 0,
                         ),
                         child: const Row(
@@ -307,11 +281,7 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                           children: [
                             Text(
                               'SUBMIT COMPLAINT',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1,
-                              ),
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1),
                             ),
                             SizedBox(width: 10),
                             Icon(Icons.arrow_forward, size: 20),
@@ -324,47 +294,14 @@ class _ReportComplaintScreenState extends State<ReportComplaintScreen> {
                 ),
               ),
             ),
-            _buildBottomNav(),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildBottomNav() {
-    final icons = [
-      Icons.home_outlined,
-      Icons.map_outlined,
-      Icons.shield_outlined,
-      Icons.bar_chart_outlined,
-      Icons.person_outline,
-    ];
-    return Container(
-      margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1A2420),
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(icons.length, (i) {
-          final selected = i == _selectedNavIndex;
-          return GestureDetector(
-            onTap: () => setState(() => _selectedNavIndex = i),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: selected ? const Color(0xFFB5E61D) : Colors.transparent,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icons[i],
-                  color: selected ? const Color(0xFF1A2420) : Colors.white70, size: 22),
-            ),
-          );
-        }),
+      bottomNavigationBar: FloatingBottomNav(
+        selectedIndex: selectedIndex,
+        onTap: (i) {
+          setState(() => selectedIndex = i);
+        },
       ),
     );
   }
@@ -386,12 +323,7 @@ class _SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w700,
-        color: Color(0xFF1A1A2E),
-        letterSpacing: 1.2,
-      ),
+      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xFF1A1A2E), letterSpacing: 1.2),
     );
   }
 }

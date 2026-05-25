@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:screen_testing/components/bottom_navigation.dart';
 
 class EmergencyHelpScreen extends StatefulWidget {
   const EmergencyHelpScreen({super.key});
@@ -6,22 +7,19 @@ class EmergencyHelpScreen extends StatefulWidget {
   State<EmergencyHelpScreen> createState() => _EmergencyHelpScreenState();
 }
 
-class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
-    with SingleTickerProviderStateMixin {
-  int _selectedNavIndex = 2;
+class _EmergencyHelpScreenState extends State<EmergencyHelpScreen> with SingleTickerProviderStateMixin {
+  int selectedIndex = 2;
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
 
   @override
   void initState() {
     super.initState();
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    )..repeat(reverse: true);
-    _pulseAnimation = Tween<double>(begin: 0.85, end: 1.0).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
-    );
+    _pulseController = AnimationController(vsync: this, duration: const Duration(seconds: 2))..repeat(reverse: true);
+    _pulseAnimation = Tween<double>(
+      begin: 0.85,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut));
   }
 
   @override
@@ -50,11 +48,7 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                         const SizedBox(width: 8),
                         const Text(
                           'Emergency Help',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF1A1A2E),
-                          ),
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
                         ),
                       ],
                     ),
@@ -85,11 +79,7 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                               const SizedBox(height: 4),
                               const Text(
                                 'Monitoring Active',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF1A1A2E),
-                                ),
+                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
                               ),
                             ],
                           ),
@@ -104,19 +94,12 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                                 Container(
                                   width: 8,
                                   height: 8,
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFF6DBF3E),
-                                    shape: BoxShape.circle,
-                                  ),
+                                  decoration: const BoxDecoration(color: Color(0xFF6DBF3E), shape: BoxShape.circle),
                                 ),
                                 const SizedBox(width: 6),
                                 const Text(
                                   'SECURE',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF4A8A22),
-                                  ),
+                                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF4A8A22)),
                                 ),
                               ],
                             ),
@@ -145,17 +128,14 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                             child: Center(
                               child: GestureDetector(
                                 onLongPress: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('SOS Activated!')),
-                                  );
+                                  ScaffoldMessenger.of(
+                                    context,
+                                  ).showSnackBar(const SnackBar(content: Text('SOS Activated!')));
                                 },
                                 child: Container(
                                   width: 180,
                                   height: 180,
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xFFCC1A1A),
-                                    shape: BoxShape.circle,
-                                  ),
+                                  decoration: const BoxDecoration(color: Color(0xFFCC1A1A), shape: BoxShape.circle),
                                   child: const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -214,9 +194,7 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                           backgroundColor: const Color(0xFFB5E61D),
                           foregroundColor: const Color(0xFF1A2420),
                           padding: const EdgeInsets.symmetric(vertical: 18),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                           elevation: 0,
                         ),
                       ),
@@ -227,10 +205,7 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(vertical: 18),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30)),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -238,11 +213,7 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                           SizedBox(width: 10),
                           Text(
                             'Emergency Contacts',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF1A1A2E),
-                            ),
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Color(0xFF1A1A2E)),
                           ),
                         ],
                       ),
@@ -252,10 +223,7 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                     // Current Location Card
                     Container(
                       padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
                       child: Row(
                         children: [
                           Container(
@@ -273,17 +241,10 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                             children: [
                               const Text(
                                 'Current Location',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF1A1A2E),
-                                ),
+                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
                               ),
                               const SizedBox(height: 2),
-                              Text(
-                                '42.3601° N, 71.0589° W',
-                                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                              ),
+                              Text('42.3601° N, 71.0589° W', style: TextStyle(fontSize: 12, color: Colors.grey[600])),
                               Text(
                                 'Forest Sector 7, Zone Alpha',
                                 style: TextStyle(fontSize: 12, color: Colors.grey[500]),
@@ -298,9 +259,14 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
                 ),
               ),
             ),
-            _buildBottomNav(),
           ],
         ),
+      ),
+      bottomNavigationBar: FloatingBottomNav(
+        selectedIndex: selectedIndex,
+        onTap: (i) {
+          setState(() => selectedIndex = i);
+        },
       ),
     );
   }
@@ -309,10 +275,7 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
         child: Column(
           children: [
             Icon(icon, size: 26, color: const Color(0xFF1A1A2E)),
@@ -328,44 +291,6 @@ class _EmergencyHelpScreenState extends State<EmergencyHelpScreen>
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildBottomNav() {
-    final icons = [
-      Icons.home_outlined,
-      Icons.map_outlined,
-      Icons.shield_outlined,
-      Icons.bar_chart_outlined,
-      Icons.person_outline,
-    ];
-    return Container(
-      margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1A2420),
-        borderRadius: BorderRadius.circular(40),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(icons.length, (i) {
-          final selected = i == _selectedNavIndex;
-          return GestureDetector(
-            onTap: () => setState(() => _selectedNavIndex = i),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 250),
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: selected ? const Color(0xFFB5E61D) : Colors.transparent,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icons[i],
-                  color: selected ? const Color(0xFF1A2420) : Colors.white70, size: 22),
-            ),
-          );
-        }),
       ),
     );
   }

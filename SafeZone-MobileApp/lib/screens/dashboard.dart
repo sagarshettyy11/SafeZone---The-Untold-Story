@@ -33,7 +33,7 @@ class _SafetyDashboardState extends State<SafetyDashboard> {
           ),
         ),
       ),
-      bottomNavigationBar: AppBottomNav(
+      bottomNavigationBar: FloatingBottomNav(
         selectedIndex: selectedIndex,
         onTap: (i) {
           setState(() => selectedIndex = i);

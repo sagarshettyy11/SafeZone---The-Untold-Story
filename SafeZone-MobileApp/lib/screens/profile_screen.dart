@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:screen_testing/components/bottom_navigation.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -9,7 +10,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool _biometricEnabled = true;
   bool _darkModeEnabled = false;
-  int _selectedNavIndex = 4;
+  int selectedIndex = 4;
 
   @override
   Widget build(BuildContext context) {
@@ -124,15 +125,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               icon: const Icon(Icons.logout, color: Color(0xFFE53935), size: 20),
                               label: const Text(
                                 'Log Out',
-                                style: TextStyle(
-                                  color: Color(0xFFE53935),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                style: TextStyle(color: Color(0xFFE53935), fontSize: 16, fontWeight: FontWeight.w600),
                               ),
-                              style: TextButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 16),
-                              ),
+                              style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 16)),
                             ),
                           ),
                           const SizedBox(height: 12),
@@ -150,9 +145,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            _buildBottomNav(),
           ],
         ),
+      ),
+      bottomNavigationBar: FloatingBottomNav(
+        selectedIndex: selectedIndex,
+        onTap: (i) {
+          setState(() => selectedIndex = i);
+        },
       ),
     );
   }
@@ -169,11 +169,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(width: 10),
               const Text(
                 'Profile',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A1A2E),
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
               ),
             ],
           ),
@@ -198,10 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   border: Border.all(color: const Color(0xFFB5E61D), width: 3),
                 ),
                 child: ClipOval(
-                  child: Image.network(
-                    'https://randomuser.me/api/portraits/men/32.jpg',
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.network('https://randomuser.me/api/portraits/men/32.jpg', fit: BoxFit.cover),
                 ),
               ),
               Positioned(
@@ -210,10 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Container(
                   width: 28,
                   height: 28,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF1A2420),
-                    shape: BoxShape.circle,
-                  ),
+                  decoration: const BoxDecoration(color: Color(0xFF1A2420), shape: BoxShape.circle),
                   child: const Icon(Icons.camera_alt, color: Colors.white, size: 15),
                 ),
               ),
@@ -222,38 +212,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(height: 12),
           const Text(
             'Kevin Merico',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF1A1A2E),
-            ),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF1A1A2E)),
           ),
           const SizedBox(height: 6),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            decoration: BoxDecoration(
-              color: const Color(0xFFEEF5E0),
-              borderRadius: BorderRadius.circular(20),
-            ),
+            decoration: BoxDecoration(color: const Color(0xFFEEF5E0), borderRadius: BorderRadius.circular(20)),
             child: const Text(
               'PREMIUM MEMBER',
-              style: TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF4A8A22),
-                letterSpacing: 0.8,
-              ),
+              style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Color(0xFF4A8A22), letterSpacing: 0.8),
             ),
           ),
           const SizedBox(height: 8),
           const Text(
             'EDIT PROFILE',
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF4A8A22),
-              letterSpacing: 1,
-            ),
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF4A8A22), letterSpacing: 1),
           ),
         ],
       ),
@@ -263,21 +236,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildSectionTitle(String title) {
     return Text(
       title,
-      style: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w700,
-        color: Color(0xFF1A1A2E),
-        letterSpacing: 1.2,
-      ),
+      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xFF1A1A2E), letterSpacing: 1.2),
     );
   }
 
   Widget _buildSettingsCard(List<Widget> children) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
       child: Column(children: children),
     );
   }
@@ -300,8 +265,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           const SizedBox(width: 14),
           Expanded(
-            child: Text(title,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color(0xFF1A1A2E))),
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color(0xFF1A1A2E)),
+            ),
           ),
           Icon(Icons.chevron_right, color: Colors.grey[400], size: 22),
         ],
@@ -328,8 +295,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           const SizedBox(width: 14),
           Expanded(
-            child: Text(title,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color(0xFF1A1A2E))),
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color(0xFF1A1A2E)),
+            ),
           ),
           Text(value, style: TextStyle(fontSize: 14, color: Colors.grey[500])),
           const SizedBox(width: 4),
@@ -359,8 +328,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           const SizedBox(width: 14),
           Expanded(
-            child: Text(title,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color(0xFF1A1A2E))),
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color(0xFF1A1A2E)),
+            ),
           ),
           Switch(
             value: value,
@@ -378,59 +349,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildDivider() {
     return Divider(height: 1, indent: 68, endIndent: 16, color: Colors.grey[100]);
   }
-
-  Widget _buildBottomNav() {
-    final items = [
-      _NavItem(Icons.grid_view_rounded, 'Dashboard'),
-      _NavItem(Icons.map_outlined, 'Map'),
-      _NavItem(Icons.emergency, 'SOS'),
-      _NavItem(Icons.bar_chart_outlined, 'Reports'),
-      _NavItem(Icons.person_outline, 'Profile'),
-    ];
-    return Container(
-      color: const Color(0xFF1A2420),
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(items.length, (i) {
-          final selected = i == _selectedNavIndex;
-          return GestureDetector(
-            onTap: () => setState(() => _selectedNavIndex = i),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  width: selected ? 52 : 44,
-                  height: selected ? 52 : 44,
-                  decoration: BoxDecoration(
-                    color: selected ? const Color(0xFFB5E61D) : Colors.transparent,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(items[i].icon,
-                      color: selected ? const Color(0xFF1A2420) : Colors.white54,
-                      size: 22),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  items[i].label,
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: selected ? const Color(0xFFB5E61D) : Colors.white38,
-                    fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
-                  ),
-                ),
-              ],
-            ),
-          );
-        }),
-      ),
-    );
-  }
-}
-
-class _NavItem {
-  final IconData icon;
-  final String label;
-  const _NavItem(this.icon, this.label);
 }
